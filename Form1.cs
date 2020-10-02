@@ -31,6 +31,15 @@ namespace cv_sharp_test1
         private void btnLoad_Click(object sender, EventArgs e)
         {
             Mat bond = Cv2.ImRead("d:/images/halcon_images/die/die_03.png", ImreadModes.Grayscale);
+
+            //Mat bond = Cv2.ImRead("D:/sglee/images/HMR_VacInsp/porridge_224/NG-T/1174.jpg");
+            //Mat bond = Cv2.ImRead("D:/images/test_images/image003_mrelse84.jpg");
+            int nRow = bond.Rows;
+            int nCol = bond.Cols;
+            int nCh = bond.Channels();
+            Cv2.CvtColor(bond, bond, ColorConversionCodes.BGR2RGB);
+            byte[] img_buffer = bond.ToBytes();
+
             image = BitmapConverter.ToBitmap(bond);
             pictureBox1.Image = image;
         }
